@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import portrait from "@/assets/portrait.jpg";
 import {
-  ArrowRight, Linkedin, Instagram, Mail, Dribbble, Figma,
+  ArrowRight, Linkedin, Instagram, Mail, Dribbble,
   Sparkles, Palette, Layers, Camera, Wand2, Brush,
   Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
-  Youtube, Smartphone, Package, Megaphone, Star, ArrowUpRight,
+  Youtube, Smartphone, Star, ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -242,7 +242,7 @@ function Hero() {
                     aria-label={label}
                     className="group grid h-11 w-11 place-items-center rounded-full glass transition hover:scale-110 hover:border-white/20 hover:shadow-[0_0_24px_-4px_oklch(0.78_0.18_305/0.7)]"
                   >
-                    <Icon className="h-4.5 w-4.5 text-muted-foreground transition group-hover:text-foreground" />
+                    <Icon className="h-4 w-4 text-muted-foreground transition group-hover:text-foreground" />
                   </a>
                 </li>
               ))}
