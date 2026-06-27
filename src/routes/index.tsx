@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/vaibhav-portrait.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail, Dribbble,
   Sparkles, Palette, Layers, Camera, Wand2, Brush,
@@ -195,7 +195,7 @@ function Hero() {
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-30 blur-3xl" />
             <div className="gradient-border absolute inset-0 overflow-hidden rounded-[2.5rem] glass glow">
               <img
-                src={portrait}
+                src={portrait.url}
                 alt="Vaibhav Mohindra, freelance graphic designer"
                 width={420}
                 height={520}
@@ -324,9 +324,6 @@ const tools = [
   { name: "Adobe Photoshop", short: "Ps", desc: "Photo manipulation, thumbnails, composites.", level: 95, color: "from-sky-500 to-indigo-600" },
   { name: "Figma", short: "Fg", desc: "UI/UX, prototypes, design systems.", level: 90, color: "from-pink-500 to-violet-500" },
   { name: "Canva", short: "Cv", desc: "Rapid social creative & templates.", level: 95, color: "from-cyan-400 to-blue-600" },
-  { name: "Adobe Illustrator", short: "Ai", desc: "Logo, icons, vector branding.", level: 80, color: "from-orange-500 to-amber-600" },
-  { name: "Adobe XD", short: "Xd", desc: "Wireframes & interactive flows.", level: 75, color: "from-fuchsia-500 to-pink-600" },
-  { name: "Lightroom", short: "Lr", desc: "Color grading & photo retouching.", level: 70, color: "from-blue-500 to-cyan-600" },
 ];
 
 function Tools() {
