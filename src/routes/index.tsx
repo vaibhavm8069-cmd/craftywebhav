@@ -518,7 +518,7 @@ const thumbs: ThumbnailItem[] = [
 function ThumbnailPortfolio() {
   const [active, setActive] = useState("All");
   const thumbCats = ["All", ...Array.from(new Set(thumbs.map((t) => t.niche)))];
-  const filtered = active === "All" ? thumbs : thumbs.filter((t) => t.c === active);
+  const filtered = active === "All" ? thumbs : thumbs.filter((t) => t.niche === active);
   const visible = filtered.length > 1 ? [...filtered, ...filtered] : filtered;
   return (
     <Section eyebrow="YouTube" title={<> 
