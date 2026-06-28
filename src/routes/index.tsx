@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import portrait from "@/assets/vaibhav-portrait.png.asset.json";
+import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
+import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
+import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
+import thumbnail5 from "@/assets/thumbnail-5.png.asset.json";
+import thumbnail6 from "@/assets/thumbnail-6.png.asset.json";
+import thumbnail7 from "@/assets/thumbnail-7.png.asset.json";
+import thumbnail8 from "@/assets/thumbnail-8.png.asset.json";
+import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
+import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail, Dribbble,
   Sparkles, Palette, Layers, Camera, Wand2, Brush,
@@ -422,27 +431,102 @@ function Detail({ k, v }: { k: string; v: string }) {
 
 /* ─────────────────────── thumbnails ─────────────────────── */
 
-const thumbCats = ["All", "Educational", "Finance", "Technology", "Podcast", "Gaming", "Motivation", "Business", "Personal Branding"];
-const thumbs = [
-  { t: "AI Revolution Explained", c: "Technology", g: "from-indigo-600 to-cyan-500" },
-  { t: "Stock Market Secrets", c: "Finance", g: "from-emerald-600 to-lime-500" },
-  { t: "Future of Technology", c: "Technology", g: "from-violet-600 to-fuchsia-500" },
-  { t: "Millionaire Habits", c: "Motivation", g: "from-amber-500 to-red-600" },
-  { t: "Podcast Growth Hacks", c: "Podcast", g: "from-rose-500 to-pink-700" },
-  { t: "Business Scaling Blueprint", c: "Business", g: "from-blue-600 to-indigo-700" },
-  { t: "Gaming Highlights", c: "Gaming", g: "from-fuchsia-600 to-purple-800" },
-  { t: "Personal Brand Masterclass", c: "Personal Branding", g: "from-orange-500 to-pink-600" },
-  { t: "Startup Journey", c: "Business", g: "from-cyan-500 to-blue-700" },
-  { t: "Marketing Psychology", c: "Educational", g: "from-teal-500 to-emerald-700" },
-  { t: "Design Career Tips", c: "Educational", g: "from-pink-500 to-rose-700" },
-  { t: "Productivity Formula", c: "Motivation", g: "from-yellow-500 to-orange-600" },
+type ThumbnailItem = {
+  title: string;
+  niche: string;
+  image: string;
+  accent: string;
+  metrics: string;
+  features: string[];
+};
+
+const thumbs: ThumbnailItem[] = [
+  {
+    title: "Reset Your Algorithm",
+    niche: "Growth",
+    image: thumbnail1.url,
+    accent: "from-emerald-400 via-lime-400 to-yellow-300",
+    metrics: "High-contrast growth storytelling",
+    features: ["Bold performance framing", "Arrow-led visual flow", "Emotion-first subject crop", "Large CTR-focused typography"],
+  },
+  {
+    title: "The Only Way to Make Your Tech Startup Successful",
+    niche: "Startup",
+    image: thumbnail3.url,
+    accent: "from-cyan-400 via-sky-400 to-indigo-400",
+    metrics: "Expert-led conversation thumbnail",
+    features: ["Authority-driven guest layout", "Quote card composition", "Hierarchy around key phrase", "Podcast-interview framing"],
+  },
+  {
+    title: "Master Color Grading",
+    niche: "Creative",
+    image: thumbnail4.url,
+    accent: "from-amber-300 via-orange-400 to-fuchsia-400",
+    metrics: "Premium tutorial visual system",
+    features: ["Before-after storytelling", "Tool-centric branding", "Clean creator cutout", "Course-style headline emphasis"],
+  },
+  {
+    title: "With ChatGPT!",
+    niche: "AI",
+    image: thumbnail5.url,
+    accent: "from-emerald-400 via-green-400 to-cyan-300",
+    metrics: "Revenue-focused AI hook",
+    features: ["Monetization proof element", "Mobile mockup context", "Strong reaction expression", "Dark-grid fintech backdrop"],
+  },
+  {
+    title: "This Update Is Insane!",
+    niche: "Tech",
+    image: thumbnail6.url,
+    accent: "from-sky-300 via-cyan-300 to-indigo-300",
+    metrics: "Product launch thumbnail energy",
+    features: ["Bright ecosystem palette", "Device-led composition", "Big app icon hero", "Urgency-driven headline"],
+  },
+  {
+    title: "Billionaires Are Wired Differently",
+    niche: "Business",
+    image: thumbnail7.url,
+    accent: "from-yellow-300 via-amber-300 to-orange-300",
+    metrics: "Debate and insight packaging",
+    features: ["Face collage tension", "Topic authority anchor", "Contrast-driven highlight strip", "Business podcast atmosphere"],
+  },
+  {
+    title: "I Made 60 Lakhs From One Show",
+    niche: "Podcast",
+    image: thumbnail8.url,
+    accent: "from-pink-300 via-rose-300 to-orange-300",
+    metrics: "Story-led success thumbnail",
+    features: ["Income claim focal point", "Host-guest balance", "Studio depth layering", "Quote-first layout"],
+  },
+  {
+    title: "When We Used to Play Here",
+    niche: "Gaming",
+    image: thumbnail9.url,
+    accent: "from-red-400 via-orange-400 to-yellow-300",
+    metrics: "Horror nostalgia thumbnail",
+    features: ["Cinematic suspense lighting", "Character reaction crop", "Monster reveal centerpiece", "Brush-style horror typography"],
+  },
+  {
+    title: "Maya Ek Pishachini",
+    niche: "Horror",
+    image: thumbnail10.url,
+    accent: "from-rose-400 via-red-400 to-fuchsia-400",
+    metrics: "Drama-horror poster treatment",
+    features: ["Shock-expression subject", "Villain reveal layering", "Moody filmic grading", "Regional title styling"],
+  },
 ];
 
 function ThumbnailPortfolio() {
   const [active, setActive] = useState("All");
+  const thumbCats = ["All", ...Array.from(new Set(thumbs.map((t) => t.niche)))];
   const filtered = active === "All" ? thumbs : thumbs.filter((t) => t.c === active);
+  const visible = filtered.length > 1 ? [...filtered, ...filtered] : filtered;
   return (
-    <Section eyebrow="YouTube" title={<>Thumbnail <span className="text-gradient">Designs</span></>}
+    <Section eyebrow="YouTube" title={<> 
+      <span className="thumbnail-heading inline-flex flex-wrap items-end gap-x-3 gap-y-1">
+        <span className="thumbnail-heading-word">Thumbnail</span>
+        <span className="thumbnail-heading-accent text-gradient">Design</span>
+      </span>
+    </>}
       subtitle="CTR-optimized, scroll-stopping designs that turn impressions into views.">
       <div className="reveal mb-8 flex flex-wrap gap-2">
         {thumbCats.map((c) => (
@@ -459,27 +543,50 @@ function ThumbnailPortfolio() {
           </button>
         ))}
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((t) => (
-          <div key={t.t} className="group relative aspect-video overflow-hidden rounded-2xl glass glow-hover">
-            <div className={`absolute inset-0 bg-gradient-to-br ${t.g}`} />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
-            <div className="absolute left-4 top-4">
-              <span className="rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur">{t.c}</span>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-4">
-              <div className="text-2xl font-extrabold leading-tight text-white drop-shadow-lg">{t.t}</div>
-            </div>
-            <div className="absolute inset-0 flex items-end bg-black/70 p-4 opacity-0 transition group-hover:opacity-100">
-              <div className="space-y-1 text-xs text-white/90">
-                <div>✦ CTR Optimized Design</div>
-                <div>✦ Custom Typography</div>
-                <div>✦ High Engagement Visuals</div>
-                <div>✦ Crafted in Photoshop</div>
+      <div className="reveal overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className={`thumbnail-scroll-track flex w-max gap-5 ${filtered.length > 1 ? "animate-thumbnail-scroll" : ""}`}>
+          {visible.map((t, index) => (
+            <article
+              key={`${t.title}-${index}`}
+              className="thumbnail-card group relative h-[250px] w-[360px] shrink-0 overflow-hidden rounded-[1.6rem] glass glow-hover sm:h-[280px] sm:w-[440px]"
+            >
+              <img
+                src={t.image}
+                alt={`${t.title} YouTube thumbnail design`}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/10" />
+              <div className={`absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r ${t.accent}`} />
+              <div className="absolute left-4 top-4 flex items-center gap-2">
+                <span className="rounded-full bg-black/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  {t.niche}
+                </span>
+                <span className="rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/80 backdrop-blur">
+                  {t.metrics}
+                </span>
               </div>
-            </div>
-          </div>
-        ))}
+              <div className="absolute inset-x-0 bottom-0 p-5 transition duration-500 group-hover:-translate-y-1 group-hover:opacity-0">
+                <h3 className="max-w-[18ch] text-2xl font-black leading-[0.95] text-white drop-shadow-lg sm:text-[2rem]">
+                  {t.title}
+                </h3>
+              </div>
+              <div className="absolute inset-0 flex items-end bg-black/72 p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur-md">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-white/65">Thumbnail features</div>
+                  <ul className="space-y-2 text-sm text-white/92">
+                    {t.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </Section>
   );
