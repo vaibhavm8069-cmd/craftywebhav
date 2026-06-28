@@ -644,53 +644,92 @@ function ThumbnailPortfolio() {
 /* ─────────────────────── UI design ─────────────────────── */
 
 const uiProjects = [
-  { t: "Food Delivery App", g: "from-orange-500 via-red-500 to-rose-600" },
-  { t: "Fitness Tracker App", g: "from-emerald-500 via-teal-500 to-cyan-600" },
-  { t: "Banking Dashboard", g: "from-indigo-500 via-violet-600 to-purple-700" },
-  { t: "E-commerce Store", g: "from-pink-500 via-rose-500 to-red-600" },
-  { t: "Travel Booking App", g: "from-sky-500 via-blue-600 to-indigo-700" },
-  { t: "Learning Platform", g: "from-amber-500 via-orange-500 to-pink-600" },
+  {
+    t: "Noise Smartwatch — Silver Steel",
+    image: uiSilver.url,
+    category: "E-commerce Product Page",
+    tools: "Figma · Photoshop",
+    details: [
+      "Hero product configurator with color swatches",
+      "Premium dark glass UI with soft radial glows",
+      "Conversion-first PDP hierarchy",
+    ],
+  },
+  {
+    t: "Noise Smartwatch — Gold Link",
+    image: uiGold.url,
+    category: "Product Variant UI",
+    tools: "Figma · Photoshop",
+    details: [
+      "Variant selection with live preview",
+      "Warm gold gradient mood per color",
+      "Feature chips for spec scannability",
+    ],
+  },
+  {
+    t: "Nike Super Rep GO",
+    image: uiNike.url,
+    category: "Sportswear Landing",
+    tools: "Figma · Illustrator",
+    details: [
+      "Editorial typography lockup",
+      "Iconic side rail navigation",
+      "Bold neon accent on product hero",
+    ],
+  },
+  {
+    t: "X-Roller Xbox Controller",
+    image: uiXroller.url,
+    category: "Gaming Product Site",
+    tools: "Figma · Photoshop",
+    details: [
+      "Asymmetric editorial image grid",
+      "Pill nav with deep red CTA",
+      "Feature badges with custom icons",
+    ],
+  },
 ];
 
 function UIDesignPortfolio() {
   return (
-    <Section eyebrow="Product" title={<>UI Design <span className="text-gradient">Projects</span></>}
+    <Section id="work" eyebrow="Product" title={<>UI / Web Page <span className="text-gradient">Design</span></>}
       subtitle="Interfaces built around real user goals — clean hierarchy, satisfying motion, frictionless flows.">
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {uiProjects.map((p, i) => (
-          <div key={p.t} className="group relative overflow-hidden rounded-3xl glass p-6 glow-hover">
-            {/* phone mockup */}
-            <div className="relative mx-auto mb-5 h-[280px] w-[160px] float-slow" style={{ animationDelay: `${i * 0.3}s` }}>
-              <div className="absolute inset-0 rounded-[2.2rem] border-2 border-white/15 bg-black p-1.5 shadow-2xl">
-                <div className={`relative h-full w-full overflow-hidden rounded-[1.8rem] bg-gradient-to-br ${p.g}`}>
-                  <div className="absolute left-1/2 top-1 h-1.5 w-12 -translate-x-1/2 rounded-full bg-black/40" />
-                  <div className="absolute inset-x-4 top-6 space-y-2">
-                    <div className="h-2 w-12 rounded-full bg-white/70" />
-                    <div className="h-3 w-24 rounded-full bg-white/90" />
-                  </div>
-                  <div className="absolute inset-x-4 top-20 space-y-2">
-                    <div className="h-14 rounded-xl bg-white/25 backdrop-blur" />
-                    <div className="h-10 rounded-xl bg-white/15 backdrop-blur" />
-                    <div className="h-10 rounded-xl bg-white/15 backdrop-blur" />
-                    <div className="h-8 rounded-xl bg-white/15 backdrop-blur" />
-                  </div>
-                  <div className="absolute inset-x-3 bottom-3 h-10 rounded-2xl bg-white/30 backdrop-blur" />
+      <div className="grid gap-5 md:grid-cols-2">
+        {uiProjects.map((p) => (
+          <article key={p.t} className="group relative overflow-hidden rounded-3xl glass glow-hover">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={p.image}
+                alt={`${p.t} UI design`}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <div className="absolute left-4 top-4">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  {p.category}
+                </span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5 transition duration-500 group-hover:opacity-0">
+                <h3 className="text-xl font-semibold text-white drop-shadow sm:text-2xl">{p.t}</h3>
+                <p className="mt-1 text-xs text-white/70">{p.tools}</p>
+              </div>
+              <div className="absolute inset-0 flex items-end bg-black/75 p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-white/65">Design highlights</div>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {p.details.map((d) => (
+                      <li key={d} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-xs text-white/60">{p.tools}</div>
                 </div>
               </div>
             </div>
-            <div className="text-center">
-              <h3 className="text-lg font-semibold">{p.t}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">Figma · Photoshop</p>
-            </div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-card/95 p-5 backdrop-blur transition-transform duration-500 group-hover:translate-y-0">
-              <div className="space-y-1.5 text-xs text-muted-foreground">
-                <div><span className="text-foreground">UX Goal:</span> Frictionless task completion</div>
-                <div><span className="text-foreground">Process:</span> Research → Wireframe → Prototype</div>
-                <div><span className="text-foreground">Color System:</span> Accessible, on-brand</div>
-                <div><span className="text-foreground">Fidelity:</span> High-fidelity prototype</div>
-              </div>
-            </div>
-          </div>
+          </article>
         ))}
       </div>
     </Section>
