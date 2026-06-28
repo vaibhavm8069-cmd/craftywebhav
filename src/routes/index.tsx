@@ -416,68 +416,6 @@ function Tools() {
   );
 }
 
-/* ─────────────────────── featured works ─────────────────────── */
-
-type Work = {
-  title: string; category: string; client: string; objective: string;
-  tools: string; result: string; gradient: string;
-};
-
-const featured: Work[] = [
-  { title: "AI Revolution Series", category: "YouTube Thumbnails", client: "Tech Creator", objective: "Boost CTR for AI explainer videos", tools: "Photoshop, Illustrator", result: "+182% CTR uplift", gradient: "from-violet-600 via-fuchsia-600 to-rose-500" },
-  { title: "FinPay Mobile Banking", category: "UI Design", client: "Fintech Startup", objective: "Modern banking dashboard redesign", tools: "Figma, Photoshop", result: "Investor demo-ready MVP", gradient: "from-emerald-500 via-teal-500 to-cyan-600" },
-  { title: "Cold Brew Coffee Co.", category: "Packaging Design", client: "DTC Beverage Brand", objective: "Premium shelf presence", tools: "Illustrator, Photoshop", result: "Launched in 40+ stores", gradient: "from-amber-500 via-orange-600 to-red-600" },
-  { title: "Black Friday Mega Sale", category: "Ad Campaign", client: "E-commerce", objective: "Drive 7-day flash sale traffic", tools: "Photoshop, Figma", result: "3.4× ROAS on paid ads", gradient: "from-sky-500 via-indigo-600 to-purple-700" },
-  { title: "PulseFit Workout App", category: "UI Design", client: "Health & Fitness", objective: "Habit-forming workout flow", tools: "Figma, XD", result: "92% completion rate", gradient: "from-lime-500 via-emerald-500 to-teal-600" },
-  { title: "Aura Cosmetics Box", category: "Packaging Design", client: "Beauty Brand", objective: "Unboxing-first identity", tools: "Illustrator, Photoshop", result: "Featured on Behance", gradient: "from-pink-500 via-rose-500 to-fuchsia-600" },
-];
-
-function FeaturedWorks() {
-  return (
-    <Section id="work" eyebrow="Featured Work" title={<>Explore <span className="text-gradient">My Work</span></>}
-      subtitle="A collection of designs crafted to increase engagement, improve user experience, and strengthen brand identity.">
-      <div className="-mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-8 sm:px-8">
-        <div className="flex w-max gap-5">
-          {featured.map((w) => (
-            <article key={w.title} className="group relative h-[420px] w-[320px] shrink-0 overflow-hidden rounded-3xl glass glow-hover sm:w-[380px]">
-              <div className={`absolute inset-0 bg-gradient-to-br ${w.gradient}`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
-              <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.6)_1px,transparent_1px)] [background-size:24px_24px]" />
-              <div className="absolute left-5 top-5">
-                <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur">{w.category}</span>
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="text-2xl font-semibold text-white drop-shadow">{w.title}</h3>
-                <p className="mt-1 text-sm text-white/80">{w.client}</p>
-              </div>
-              <div className="absolute inset-0 flex translate-y-4 flex-col justify-end bg-gradient-to-t from-black/90 via-black/60 to-black/0 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                <div className="space-y-2 text-sm text-white/90">
-                  <Detail k="Objective" v={w.objective} />
-                  <Detail k="Tools" v={w.tools} />
-                  <Detail k="Result" v={w.result} />
-                </div>
-                <button className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-white/90">
-                  View Project <ArrowUpRight className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-      <p className="mt-4 text-xs text-muted-foreground">← scroll horizontally to explore →</p>
-    </Section>
-  );
-}
-
-function Detail({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex items-start gap-2">
-      <span className="min-w-[72px] text-xs uppercase tracking-wider text-white/60">{k}</span>
-      <span className="flex-1 text-sm">{v}</span>
-    </div>
-  );
-}
-
 /* ─────────────────────── thumbnails ─────────────────────── */
 
 type ThumbnailItem = {
@@ -1000,8 +938,8 @@ function Contact() {
           <div className="glass rounded-3xl p-6">
             <h3 className="text-lg font-semibold">Direct line</h3>
             <p className="mt-2 text-sm text-muted-foreground">Prefer to skip the form? Reach out directly — typical reply within 24 hours.</p>
-            <a href="mailto:hello@vaibhav.design" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand">
-              <Mail className="h-4 w-4" /> hello@vaibhav.design
+            <a href="mailto:vaibhavmohindra22155@gmail.com" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand">
+              <Mail className="h-4 w-4" /> vaibhavmohindra22155@gmail.com
             </a>
           </div>
           <div className="glass rounded-3xl p-6">
