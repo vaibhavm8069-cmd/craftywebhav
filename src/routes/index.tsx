@@ -16,7 +16,7 @@ import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
 import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail,
-  Sparkles, Palette, Layers, Camera, Wand2, Brush,
+  Sparkles, Palette, Layers, Camera, Wand2,
   Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
   Youtube, Smartphone, Star, ArrowUpRight,
 } from "lucide-react";
