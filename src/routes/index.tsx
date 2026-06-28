@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import portrait from "@/assets/vaibhav-portrait.png.asset.json";
+import uiSilver from "@/assets/ui-silver.jpg.asset.json";
+import uiGold from "@/assets/ui-gold.jpg.asset.json";
+import uiNike from "@/assets/ui-nike.jpg.asset.json";
+import uiXroller from "@/assets/ui-xroller.jpg.asset.json";
 import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
 import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
 import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
@@ -11,7 +15,7 @@ import thumbnail8 from "@/assets/thumbnail-8.png.asset.json";
 import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
 import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
 import {
-  ArrowRight, Linkedin, Instagram, Mail, Dribbble,
+  ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2, Brush,
   Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
   Youtube, Smartphone, Star, ArrowUpRight,
@@ -38,12 +42,12 @@ function Index() {
   return (
     <div className="relative min-h-screen overflow-x-clip text-foreground">
       <CursorGlow />
+      <ParticlesBackground />
       <Nav />
       <Hero />
       <LogoMarquee />
       <About />
       <Tools />
-      <FeaturedWorks />
       <ThumbnailPortfolio />
       <UIDesignPortfolio />
       <PackagingPortfolio />
@@ -92,6 +96,53 @@ function CursorGlow() {
           "radial-gradient(380px circle at var(--mx,50%) var(--my,50%), oklch(0.78 0.18 305 / 0.18), transparent 60%)",
       }}
     />
+  );
+}
+
+function ParticlesBackground() {
+  const particles = Array.from({ length: 22 });
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <svg className="absolute -left-32 top-10 h-[28rem] w-[28rem] animate-spin-slow opacity-[0.08]" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="80" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <circle cx="100" cy="100" r="60" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <circle cx="100" cy="100" r="40" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <defs>
+          <linearGradient id="pgrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="oklch(0.78 0.18 305)" />
+            <stop offset="100%" stopColor="oklch(0.74 0.17 220)" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <svg className="absolute -right-24 bottom-20 h-[22rem] w-[22rem] opacity-[0.08]" viewBox="0 0 200 200">
+        <polygon points="100,10 190,80 160,190 40,190 10,80" stroke="oklch(0.78 0.18 305)" strokeWidth="0.4" fill="none" />
+        <polygon points="100,40 160,85 140,160 60,160 40,85" stroke="oklch(0.74 0.17 220)" strokeWidth="0.4" fill="none" />
+      </svg>
+      {particles.map((_, i) => {
+        const size = 2 + (i % 5);
+        const left = (i * 53) % 100;
+        const top = (i * 37) % 100;
+        const delay = (i % 7) * 0.6;
+        const dur = 8 + (i % 6);
+        return (
+          <span
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              width: size,
+              height: size,
+              background: i % 2 ? "oklch(0.78 0.18 305 / 0.55)" : "oklch(0.74 0.17 220 / 0.55)",
+              boxShadow: "0 0 14px currentColor",
+              color: i % 2 ? "oklch(0.78 0.18 305 / 0.6)" : "oklch(0.74 0.17 220 / 0.6)",
+              animation: `floatY ${dur}s ease-in-out ${delay}s infinite`,
+              opacity: 0.55,
+            }}
+          />
+        );
+      })}
+    </div>
   );
 }
 
@@ -186,11 +237,9 @@ const stats = [
 ];
 
 const socials = [
-  { Icon: Linkedin, href: "#", label: "LinkedIn" },
-  { Icon: Brush, href: "#", label: "Behance" },
-  { Icon: Instagram, href: "#", label: "Instagram" },
-  { Icon: Dribbble, href: "#", label: "Dribbble" },
-  { Icon: Mail, href: "#contact", label: "Email" },
+  { Icon: Instagram, href: "https://www.instagram.com/_vaibhav_.mohindra994?igsh=MXE0cDVwZDJkdWl2MQ==", label: "Instagram" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/in/vaibhav-mohindra-a17662380?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { Icon: Mail, href: "mailto:vaibhavmohindra22155@gmail.com", label: "Email" },
 ];
 
 function Hero() {
