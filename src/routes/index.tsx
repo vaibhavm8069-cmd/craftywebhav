@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import portrait from "@/assets/vaibhav-portrait.png.asset.json";
+import uiSilver from "@/assets/ui-silver.jpg.asset.json";
+import uiGold from "@/assets/ui-gold.jpg.asset.json";
+import uiNike from "@/assets/ui-nike.jpg.asset.json";
+import uiXroller from "@/assets/ui-xroller.jpg.asset.json";
 import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
 import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
 import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
@@ -11,8 +15,8 @@ import thumbnail8 from "@/assets/thumbnail-8.png.asset.json";
 import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
 import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
 import {
-  ArrowRight, Linkedin, Instagram, Mail, Dribbble,
-  Sparkles, Palette, Layers, Camera, Wand2, Brush,
+  ArrowRight, Linkedin, Instagram, Mail,
+  Sparkles, Palette, Layers, Camera, Wand2,
   Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
   Youtube, Smartphone, Star, ArrowUpRight,
 } from "lucide-react";
@@ -38,12 +42,12 @@ function Index() {
   return (
     <div className="relative min-h-screen overflow-x-clip text-foreground">
       <CursorGlow />
+      <ParticlesBackground />
       <Nav />
       <Hero />
       <LogoMarquee />
       <About />
       <Tools />
-      <FeaturedWorks />
       <ThumbnailPortfolio />
       <UIDesignPortfolio />
       <PackagingPortfolio />
@@ -92,6 +96,53 @@ function CursorGlow() {
           "radial-gradient(380px circle at var(--mx,50%) var(--my,50%), oklch(0.78 0.18 305 / 0.18), transparent 60%)",
       }}
     />
+  );
+}
+
+function ParticlesBackground() {
+  const particles = Array.from({ length: 22 });
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <svg className="absolute -left-32 top-10 h-[28rem] w-[28rem] animate-spin-slow opacity-[0.08]" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="80" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <circle cx="100" cy="100" r="60" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <circle cx="100" cy="100" r="40" stroke="url(#pgrad)" strokeWidth="0.5" />
+        <defs>
+          <linearGradient id="pgrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="oklch(0.78 0.18 305)" />
+            <stop offset="100%" stopColor="oklch(0.74 0.17 220)" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <svg className="absolute -right-24 bottom-20 h-[22rem] w-[22rem] opacity-[0.08]" viewBox="0 0 200 200">
+        <polygon points="100,10 190,80 160,190 40,190 10,80" stroke="oklch(0.78 0.18 305)" strokeWidth="0.4" fill="none" />
+        <polygon points="100,40 160,85 140,160 60,160 40,85" stroke="oklch(0.74 0.17 220)" strokeWidth="0.4" fill="none" />
+      </svg>
+      {particles.map((_, i) => {
+        const size = 2 + (i % 5);
+        const left = (i * 53) % 100;
+        const top = (i * 37) % 100;
+        const delay = (i % 7) * 0.6;
+        const dur = 8 + (i % 6);
+        return (
+          <span
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              width: size,
+              height: size,
+              background: i % 2 ? "oklch(0.78 0.18 305 / 0.55)" : "oklch(0.74 0.17 220 / 0.55)",
+              boxShadow: "0 0 14px currentColor",
+              color: i % 2 ? "oklch(0.78 0.18 305 / 0.6)" : "oklch(0.74 0.17 220 / 0.6)",
+              animation: `floatY ${dur}s ease-in-out ${delay}s infinite`,
+              opacity: 0.55,
+            }}
+          />
+        );
+      })}
+    </div>
   );
 }
 
@@ -186,11 +237,9 @@ const stats = [
 ];
 
 const socials = [
-  { Icon: Linkedin, href: "#", label: "LinkedIn" },
-  { Icon: Brush, href: "#", label: "Behance" },
-  { Icon: Instagram, href: "#", label: "Instagram" },
-  { Icon: Dribbble, href: "#", label: "Dribbble" },
-  { Icon: Mail, href: "#contact", label: "Email" },
+  { Icon: Instagram, href: "https://www.instagram.com/_vaibhav_.mohindra994?igsh=MXE0cDVwZDJkdWl2MQ==", label: "Instagram" },
+  { Icon: Linkedin, href: "https://www.linkedin.com/in/vaibhav-mohindra-a17662380?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { Icon: Mail, href: "mailto:vaibhavmohindra22155@gmail.com", label: "Email" },
 ];
 
 function Hero() {
@@ -367,68 +416,6 @@ function Tools() {
   );
 }
 
-/* ─────────────────────── featured works ─────────────────────── */
-
-type Work = {
-  title: string; category: string; client: string; objective: string;
-  tools: string; result: string; gradient: string;
-};
-
-const featured: Work[] = [
-  { title: "AI Revolution Series", category: "YouTube Thumbnails", client: "Tech Creator", objective: "Boost CTR for AI explainer videos", tools: "Photoshop, Illustrator", result: "+182% CTR uplift", gradient: "from-violet-600 via-fuchsia-600 to-rose-500" },
-  { title: "FinPay Mobile Banking", category: "UI Design", client: "Fintech Startup", objective: "Modern banking dashboard redesign", tools: "Figma, Photoshop", result: "Investor demo-ready MVP", gradient: "from-emerald-500 via-teal-500 to-cyan-600" },
-  { title: "Cold Brew Coffee Co.", category: "Packaging Design", client: "DTC Beverage Brand", objective: "Premium shelf presence", tools: "Illustrator, Photoshop", result: "Launched in 40+ stores", gradient: "from-amber-500 via-orange-600 to-red-600" },
-  { title: "Black Friday Mega Sale", category: "Ad Campaign", client: "E-commerce", objective: "Drive 7-day flash sale traffic", tools: "Photoshop, Figma", result: "3.4× ROAS on paid ads", gradient: "from-sky-500 via-indigo-600 to-purple-700" },
-  { title: "PulseFit Workout App", category: "UI Design", client: "Health & Fitness", objective: "Habit-forming workout flow", tools: "Figma, XD", result: "92% completion rate", gradient: "from-lime-500 via-emerald-500 to-teal-600" },
-  { title: "Aura Cosmetics Box", category: "Packaging Design", client: "Beauty Brand", objective: "Unboxing-first identity", tools: "Illustrator, Photoshop", result: "Featured on Behance", gradient: "from-pink-500 via-rose-500 to-fuchsia-600" },
-];
-
-function FeaturedWorks() {
-  return (
-    <Section id="work" eyebrow="Featured Work" title={<>Explore <span className="text-gradient">My Work</span></>}
-      subtitle="A collection of designs crafted to increase engagement, improve user experience, and strengthen brand identity.">
-      <div className="-mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-8 sm:px-8">
-        <div className="flex w-max gap-5">
-          {featured.map((w) => (
-            <article key={w.title} className="group relative h-[420px] w-[320px] shrink-0 overflow-hidden rounded-3xl glass glow-hover sm:w-[380px]">
-              <div className={`absolute inset-0 bg-gradient-to-br ${w.gradient}`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_50%)]" />
-              <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.6)_1px,transparent_1px)] [background-size:24px_24px]" />
-              <div className="absolute left-5 top-5">
-                <span className="rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur">{w.category}</span>
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="text-2xl font-semibold text-white drop-shadow">{w.title}</h3>
-                <p className="mt-1 text-sm text-white/80">{w.client}</p>
-              </div>
-              <div className="absolute inset-0 flex translate-y-4 flex-col justify-end bg-gradient-to-t from-black/90 via-black/60 to-black/0 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                <div className="space-y-2 text-sm text-white/90">
-                  <Detail k="Objective" v={w.objective} />
-                  <Detail k="Tools" v={w.tools} />
-                  <Detail k="Result" v={w.result} />
-                </div>
-                <button className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-white/90">
-                  View Project <ArrowUpRight className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-      <p className="mt-4 text-xs text-muted-foreground">← scroll horizontally to explore →</p>
-    </Section>
-  );
-}
-
-function Detail({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex items-start gap-2">
-      <span className="min-w-[72px] text-xs uppercase tracking-wider text-white/60">{k}</span>
-      <span className="flex-1 text-sm">{v}</span>
-    </div>
-  );
-}
-
 /* ─────────────────────── thumbnails ─────────────────────── */
 
 type ThumbnailItem = {
@@ -595,53 +582,92 @@ function ThumbnailPortfolio() {
 /* ─────────────────────── UI design ─────────────────────── */
 
 const uiProjects = [
-  { t: "Food Delivery App", g: "from-orange-500 via-red-500 to-rose-600" },
-  { t: "Fitness Tracker App", g: "from-emerald-500 via-teal-500 to-cyan-600" },
-  { t: "Banking Dashboard", g: "from-indigo-500 via-violet-600 to-purple-700" },
-  { t: "E-commerce Store", g: "from-pink-500 via-rose-500 to-red-600" },
-  { t: "Travel Booking App", g: "from-sky-500 via-blue-600 to-indigo-700" },
-  { t: "Learning Platform", g: "from-amber-500 via-orange-500 to-pink-600" },
+  {
+    t: "Noise Smartwatch — Silver Steel",
+    image: uiSilver.url,
+    category: "E-commerce Product Page",
+    tools: "Figma · Photoshop",
+    details: [
+      "Hero product configurator with color swatches",
+      "Premium dark glass UI with soft radial glows",
+      "Conversion-first PDP hierarchy",
+    ],
+  },
+  {
+    t: "Noise Smartwatch — Gold Link",
+    image: uiGold.url,
+    category: "Product Variant UI",
+    tools: "Figma · Photoshop",
+    details: [
+      "Variant selection with live preview",
+      "Warm gold gradient mood per color",
+      "Feature chips for spec scannability",
+    ],
+  },
+  {
+    t: "Nike Super Rep GO",
+    image: uiNike.url,
+    category: "Sportswear Landing",
+    tools: "Figma · Illustrator",
+    details: [
+      "Editorial typography lockup",
+      "Iconic side rail navigation",
+      "Bold neon accent on product hero",
+    ],
+  },
+  {
+    t: "X-Roller Xbox Controller",
+    image: uiXroller.url,
+    category: "Gaming Product Site",
+    tools: "Figma · Photoshop",
+    details: [
+      "Asymmetric editorial image grid",
+      "Pill nav with deep red CTA",
+      "Feature badges with custom icons",
+    ],
+  },
 ];
 
 function UIDesignPortfolio() {
   return (
-    <Section eyebrow="Product" title={<>UI Design <span className="text-gradient">Projects</span></>}
+    <Section id="work" eyebrow="Product" title={<>UI / Web Page <span className="text-gradient">Design</span></>}
       subtitle="Interfaces built around real user goals — clean hierarchy, satisfying motion, frictionless flows.">
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {uiProjects.map((p, i) => (
-          <div key={p.t} className="group relative overflow-hidden rounded-3xl glass p-6 glow-hover">
-            {/* phone mockup */}
-            <div className="relative mx-auto mb-5 h-[280px] w-[160px] float-slow" style={{ animationDelay: `${i * 0.3}s` }}>
-              <div className="absolute inset-0 rounded-[2.2rem] border-2 border-white/15 bg-black p-1.5 shadow-2xl">
-                <div className={`relative h-full w-full overflow-hidden rounded-[1.8rem] bg-gradient-to-br ${p.g}`}>
-                  <div className="absolute left-1/2 top-1 h-1.5 w-12 -translate-x-1/2 rounded-full bg-black/40" />
-                  <div className="absolute inset-x-4 top-6 space-y-2">
-                    <div className="h-2 w-12 rounded-full bg-white/70" />
-                    <div className="h-3 w-24 rounded-full bg-white/90" />
-                  </div>
-                  <div className="absolute inset-x-4 top-20 space-y-2">
-                    <div className="h-14 rounded-xl bg-white/25 backdrop-blur" />
-                    <div className="h-10 rounded-xl bg-white/15 backdrop-blur" />
-                    <div className="h-10 rounded-xl bg-white/15 backdrop-blur" />
-                    <div className="h-8 rounded-xl bg-white/15 backdrop-blur" />
-                  </div>
-                  <div className="absolute inset-x-3 bottom-3 h-10 rounded-2xl bg-white/30 backdrop-blur" />
+      <div className="grid gap-5 md:grid-cols-2">
+        {uiProjects.map((p) => (
+          <article key={p.t} className="group relative overflow-hidden rounded-3xl glass glow-hover">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={p.image}
+                alt={`${p.t} UI design`}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <div className="absolute left-4 top-4">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  {p.category}
+                </span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5 transition duration-500 group-hover:opacity-0">
+                <h3 className="text-xl font-semibold text-white drop-shadow sm:text-2xl">{p.t}</h3>
+                <p className="mt-1 text-xs text-white/70">{p.tools}</p>
+              </div>
+              <div className="absolute inset-0 flex items-end bg-black/75 p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-white/65">Design highlights</div>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {p.details.map((d) => (
+                      <li key={d} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-xs text-white/60">{p.tools}</div>
                 </div>
               </div>
             </div>
-            <div className="text-center">
-              <h3 className="text-lg font-semibold">{p.t}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">Figma · Photoshop</p>
-            </div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-card/95 p-5 backdrop-blur transition-transform duration-500 group-hover:translate-y-0">
-              <div className="space-y-1.5 text-xs text-muted-foreground">
-                <div><span className="text-foreground">UX Goal:</span> Frictionless task completion</div>
-                <div><span className="text-foreground">Process:</span> Research → Wireframe → Prototype</div>
-                <div><span className="text-foreground">Color System:</span> Accessible, on-brand</div>
-                <div><span className="text-foreground">Fidelity:</span> High-fidelity prototype</div>
-              </div>
-            </div>
-          </div>
+          </article>
         ))}
       </div>
     </Section>
@@ -912,8 +938,8 @@ function Contact() {
           <div className="glass rounded-3xl p-6">
             <h3 className="text-lg font-semibold">Direct line</h3>
             <p className="mt-2 text-sm text-muted-foreground">Prefer to skip the form? Reach out directly — typical reply within 24 hours.</p>
-            <a href="mailto:hello@vaibhav.design" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand">
-              <Mail className="h-4 w-4" /> hello@vaibhav.design
+            <a href="mailto:vaibhavmohindra22155@gmail.com" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand">
+              <Mail className="h-4 w-4" /> vaibhavmohindra22155@gmail.com
             </a>
           </div>
           <div className="glass rounded-3xl p-6">
