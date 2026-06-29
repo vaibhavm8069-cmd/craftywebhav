@@ -14,11 +14,19 @@ import thumbnail7 from "@/assets/thumbnail-7.png.asset.json";
 import thumbnail8 from "@/assets/thumbnail-8.png.asset.json";
 import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
 import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
+import thumbnailWebDesign from "@/assets/thumbnail-web-design.png.asset.json";
+import posterPizza from "@/assets/poster-pizza.jpg.asset.json";
+import posterBurger from "@/assets/poster-burger.png.asset.json";
+import posterBurgerBillboard from "@/assets/poster-burger-billboard.png.asset.json";
+import posterPizzaBillboard from "@/assets/poster-pizza-billboard.jpg.asset.json";
+import posterAgera from "@/assets/poster-agera.png.asset.json";
+import packagingJuiceCan from "@/assets/packaging-juice-can.png.asset.json";
+import packagingJuiceLabel from "@/assets/packaging-juice-label.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
-  Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
-  Youtube, Smartphone, Star, ArrowUpRight,
+  Send, CalendarClock,
+  Youtube, Smartphone, ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,11 +58,8 @@ function Index() {
       <Tools />
       <ThumbnailPortfolio />
       <UIDesignPortfolio />
-      <PackagingPortfolio />
-      <AdvertisementPortfolio />
-      <FreelanceJourney />
+      <PackagingPosterPortfolio />
       <Process />
-      <Testimonials />
       <Contact />
       <Footer />
     </div>
@@ -500,6 +505,14 @@ const thumbs: ThumbnailItem[] = [
     metrics: "Drama-horror poster treatment",
     features: ["Shock-expression subject", "Villain reveal layering", "Moody filmic grading", "Regional title styling"],
   },
+  {
+    title: "Close Clients In Just 7 Days!",
+    niche: "Marketing",
+    image: thumbnailWebDesign.url,
+    accent: "from-emerald-400 via-green-400 to-lime-300",
+    metrics: "Web design lead-gen thumbnail",
+    features: ["Money-green focal accent", "Client payments mockup overlay", "Upward growth chart cue", "Bold italic CTR headline"],
+  },
 ];
 
 function ThumbnailPortfolio() {
@@ -674,145 +687,115 @@ function UIDesignPortfolio() {
   );
 }
 
-/* ─────────────────────── packaging ─────────────────────── */
+/* ─────────────────────── packaging & posters ─────────────────────── */
 
-const packaging = [
-  { t: "Cold Brew Coffee", g: "from-amber-700 via-orange-700 to-red-800", icon: "☕" },
-  { t: "Volt Energy Drink", g: "from-yellow-400 via-amber-500 to-orange-600", icon: "⚡" },
-  { t: "Organic Harvest", g: "from-emerald-600 via-green-700 to-lime-700", icon: "🌱" },
-  { t: "Aura Cosmetic Box", g: "from-pink-500 via-rose-500 to-fuchsia-600", icon: "✨" },
-  { t: "Crunch Snacks", g: "from-orange-500 via-red-500 to-pink-600", icon: "🥨" },
-  { t: "Premium Tea Co.", g: "from-teal-600 via-emerald-700 to-cyan-700", icon: "🍵" },
+type PosterItem = {
+  t: string;
+  category: string;
+  image: string;
+  tools: string;
+  details: string[];
+  span?: string;
+};
+
+const posters: PosterItem[] = [
+  {
+    t: "Juicey Organo — Can Mockup",
+    category: "Packaging Design",
+    image: packagingJuiceCan.url,
+    tools: "Photoshop · Illustrator",
+    details: ["Beverage can label wrap", "Premium gloss + droplet finish", "No-preservatives trust badge", "Splash-driven hero composition"],
+  },
+  {
+    t: "Juicey Organo — Label Artwork",
+    category: "Packaging Design",
+    image: packagingJuiceLabel.url,
+    tools: "Illustrator · Photoshop",
+    details: ["Flat label print-ready layout", "Custom citrus display type", "250ml volume hierarchy", "Organic certification badge"],
+  },
+  {
+    t: "Super Sizzling Pizza — Social Poster",
+    category: "Poster Advertisement",
+    image: posterPizza.url,
+    tools: "Photoshop",
+    details: ["Distressed editorial type stack", "Topping splash composition", "50% OFF chalk-style mark", "Order Now + free delivery CTA"],
+  },
+  {
+    t: "Delicious Burger — Campaign Poster",
+    category: "Poster Advertisement",
+    image: posterBurger.url,
+    tools: "Photoshop",
+    details: ["Bold grunge headline", "Yellow price-tag focal point", "Floating ingredient parallax", "Combo + drink storytelling"],
+  },
+  {
+    t: "Pizza Billboard — Metro Mockup",
+    category: "Outdoor Ad Mockup",
+    image: posterPizzaBillboard.url,
+    tools: "Photoshop",
+    details: ["DOOH metro-station placement", "High-impact vertical hero", "Brand recall headline lockup", "Real-world context render"],
+  },
+  {
+    t: "Burger Billboard — Street Mockup",
+    category: "Outdoor Ad Mockup",
+    image: posterBurgerBillboard.url,
+    tools: "Photoshop",
+    details: ["Night-scene storefront mockup", "Glow lit-frame product hero", "Order Now CTA placement", "Premium QSR campaign feel"],
+  },
+  {
+    t: "Koeinsegg Agera — Auto Print",
+    category: "Poster Advertisement",
+    image: posterAgera.url,
+    tools: "Illustrator · Photoshop",
+    details: ["Editorial automotive layout", "Performance spec data grid", "Custom torn-edge masthead", "Iconography-driven feature row"],
+    span: "md:col-span-2",
+  },
 ];
 
-function PackagingPortfolio() {
+function PackagingPosterPortfolio() {
   return (
-    <Section eyebrow="Print" title={<>Packaging <span className="text-gradient">Design</span></>}
-      subtitle="Shelf-stopping packaging concepts built around brand strategy and tactile detail.">
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {packaging.map((p) => (
-          <div key={p.t} className="group relative h-72 overflow-hidden rounded-3xl glass glow-hover">
-            <div className={`absolute inset-0 bg-gradient-to-br ${p.g}`} />
-            {/* box mockup */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative h-44 w-32 -rotate-6 rounded-md bg-gradient-to-b from-white/30 to-black/30 shadow-2xl backdrop-blur-sm transition group-hover:rotate-0 group-hover:scale-110">
-                <div className="absolute inset-x-3 top-4 text-center text-3xl">{p.icon}</div>
-                <div className="absolute inset-x-3 top-16 h-px bg-white/40" />
-                <div className="absolute inset-x-3 top-20 text-center text-[10px] font-bold uppercase tracking-wider text-white/90">{p.t}</div>
-                <div className="absolute inset-x-4 bottom-4 h-1 rounded bg-white/40" />
-              </div>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <h3 className="text-lg font-semibold text-white">{p.t}</h3>
-            </div>
-            <div className="absolute inset-0 flex items-end bg-black/80 p-5 opacity-0 transition group-hover:opacity-100">
-              <ul className="space-y-1 text-xs text-white/90">
-                <li>✦ Packaging Concept</li>
-                <li>✦ Brand Strategy</li>
-                <li>✦ Print Specifications</li>
-                <li>✦ Visual Identity</li>
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ─────────────────────── ads ─────────────────────── */
-
-const ads = [
-  { t: "Social Media Ads", g: "from-fuchsia-600 to-pink-600" },
-  { t: "Product Launch Campaign", g: "from-indigo-600 to-blue-700" },
-  { t: "Promotional Posters", g: "from-orange-500 to-red-700" },
-  { t: "Sale Banners", g: "from-emerald-500 to-teal-700" },
-  { t: "Event Advertisements", g: "from-violet-600 to-purple-800" },
-  { t: "Brand Awareness Campaigns", g: "from-cyan-500 to-blue-700" },
-];
-
-function AdvertisementPortfolio() {
-  return (
-    <Section eyebrow="Performance" title={<>Advertisement <span className="text-gradient">Creatives</span></>}
-      subtitle="Conversion-first ad creatives engineered to stop the scroll and drive action.">
+    <Section eyebrow="Print & Campaigns"
+      title={<>Packaging & <span className="text-gradient">Poster Design</span></>}
+      subtitle="Shelf-ready packaging and high-impact poster advertisements built to stop the scroll — and the foot traffic.">
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {ads.map((a) => (
-          <div key={a.t} className="group relative aspect-[4/5] overflow-hidden rounded-3xl glass glow-hover">
-            <div className={`absolute inset-0 bg-gradient-to-br ${a.g}`} />
-            <div className="absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:18px_18px] opacity-40" />
-            <div className="absolute left-5 right-5 top-5 space-y-2">
-              <div className="inline-block rounded-full bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur">Limited Time</div>
-              <div className="text-4xl font-black leading-none text-white drop-shadow-lg">SHOP NOW</div>
-              <div className="text-sm text-white/90">Up to 60% Off</div>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-5">
-              <div className="rounded-2xl bg-white/15 p-3 backdrop-blur">
-                <div className="text-sm font-semibold text-white">{a.t}</div>
-              </div>
-            </div>
-            <div className="absolute inset-0 flex items-end bg-black/80 p-5 opacity-0 transition group-hover:opacity-100">
-              <ul className="space-y-1 text-xs text-white/90">
-                <li>✦ Campaign Goal: Conversions</li>
-                <li>✦ Target Audience: Defined personas</li>
-                <li>✦ Conversion Focus: CTR & ROAS</li>
-                <li>✦ Creative Strategy: Hook + offer + CTA</li>
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ─────────────────────── journey ─────────────────────── */
-
-const journey = [
-  { y: "2023", t: "Started Freelancing", d: "Took the leap into full-time freelance design." },
-  { y: "2023", t: "First Paid Client", d: "Delivered a brand identity package that became a long-term retainer." },
-  { y: "2024", t: "Expanded into UI Design", d: "Started shipping product UI for early-stage startups." },
-  { y: "2024", t: "Brand Identity Projects", d: "Crafted visual systems for 5+ DTC brands." },
-  { y: "2025", t: "Advertising Campaign Work", d: "Led performance creative for paid social campaigns." },
-];
-const journeyStats = [
-  { n: 15, s: "+", l: "Completed Projects" },
-  { n: 10, s: "+", l: "Returning Clients" },
-  { n: 100, s: "+", l: "Design Deliverables" },
-  { n: 95, s: "%", l: "Client Satisfaction" },
-];
-
-function FreelanceJourney() {
-  return (
-    <Section eyebrow="Journey" title={<>Freelance <span className="text-gradient">Journey</span></>}
-      subtitle="Two years of compounding craft, client wins, and creative range.">
-      <div className="reveal mb-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {journeyStats.map((s) => (
-          <div key={s.l} className="glass rounded-2xl p-5 glow-hover">
-            <div className="text-4xl font-semibold text-gradient">
-              <CountUp end={s.n} suffix={s.s} />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-          </div>
-        ))}
-      </div>
-      <div className="relative">
-        <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-brand/70 via-brand-2/40 to-transparent md:left-1/2" />
-        <ul className="space-y-8">
-          {journey.map((m, i) => (
-            <li key={m.t} className={`reveal relative md:grid md:grid-cols-2 md:gap-12 ${i % 2 ? "md:[&>div]:col-start-2" : ""}`}>
-              <div className="relative pl-12 md:pl-0">
-                <span className="absolute -left-0.5 top-1.5 grid h-9 w-9 place-items-center rounded-full bg-gradient-brand text-xs font-bold text-primary-foreground md:left-1/2 md:-translate-x-1/2">
-                  {String(i + 1).padStart(2, "0")}
+        {posters.map((p) => (
+          <article
+            key={p.t}
+            className={`reveal group relative overflow-hidden rounded-3xl glass glow-hover ${p.span ?? ""}`}
+          >
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <img
+                src={p.image}
+                alt={`${p.t} — ${p.category}`}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+              <div className="absolute left-4 top-4">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  {p.category}
                 </span>
-                <div className={`glass rounded-2xl p-5 ${i % 2 ? "md:ml-12" : "md:mr-12"}`}>
-                  <div className="text-xs uppercase tracking-wider text-brand">{m.y}</div>
-                  <div className="mt-1 text-lg font-semibold">{m.t}</div>
-                  <p className="mt-1 text-sm text-muted-foreground">{m.d}</p>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5 transition duration-500 group-hover:opacity-0">
+                <h3 className="text-lg font-semibold text-white drop-shadow sm:text-xl">{p.t}</h3>
+                <p className="mt-1 text-xs text-white/70">{p.tools}</p>
+              </div>
+              <div className="absolute inset-0 flex items-end bg-black/75 p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-white/65">Design highlights</div>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {p.details.map((d) => (
+                      <li key={d} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-xs text-white/60">{p.tools}</div>
                 </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            </div>
+          </article>
+        ))}
       </div>
     </Section>
   );
@@ -842,61 +825,6 @@ function Process() {
             </div>
           </div>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ─────────────────────── testimonials ─────────────────────── */
-
-const testimonials = [
-  { n: "Arjun Kapoor", c: "Founder · Lumen AI", q: "Vaibhav's thumbnails doubled our CTR within two weeks. He just gets attention.", i: "AK" },
-  { n: "Priya Shah", c: "Marketing Lead · NorthBean", q: "Our packaging redesign felt premium and shelf-ready. Sales jumped 38% the next quarter.", i: "PS" },
-  { n: "Daniel Rivera", c: "CEO · PulseFit", q: "Easily the most thoughtful product designer I've worked with as a freelancer. Highly recommend.", i: "DR" },
-  { n: "Neha Verma", c: "Creator · CreatorClub", q: "Reliable, creative, and fast. Vaibhav has become our go-to design partner.", i: "NV" },
-];
-
-function Testimonials() {
-  const [i, setI] = useState(0);
-  const t = testimonials[i];
-  return (
-    <Section eyebrow="Testimonials" title={<>Client <span className="text-gradient">Feedback</span></>}
-      subtitle="What founders, creators and marketers say after we ship.">
-      <div className="reveal relative mx-auto max-w-3xl">
-        <div className="glass-strong rounded-3xl p-8 sm:p-12 glow">
-          <Quote className="h-10 w-10 text-brand" />
-          <p className="mt-6 text-xl leading-relaxed sm:text-2xl">{t.q}</p>
-          <div className="mt-8 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-brand font-bold text-primary-foreground">{t.i}</div>
-              <div>
-                <div className="font-semibold">{t.n}</div>
-                <div className="text-sm text-muted-foreground">{t.c}</div>
-              </div>
-            </div>
-            <div className="flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-4 w-4 fill-brand text-brand" />)}
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 flex items-center justify-between">
-          <div className="flex gap-1.5">
-            {testimonials.map((_, k) => (
-              <button key={k} onClick={() => setI(k)} aria-label={`Testimonial ${k + 1}`}
-                className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-gradient-brand" : "w-1.5 bg-white/15"}`} />
-            ))}
-          </div>
-          <div className="flex gap-2">
-            <button onClick={() => setI((i - 1 + testimonials.length) % testimonials.length)}
-              className="grid h-10 w-10 place-items-center rounded-full glass transition hover:bg-white/10" aria-label="Previous">
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button onClick={() => setI((i + 1) % testimonials.length)}
-              className="grid h-10 w-10 place-items-center rounded-full glass transition hover:bg-white/10" aria-label="Next">
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
       </div>
     </Section>
   );
@@ -954,13 +882,6 @@ function Contact() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="relative overflow-hidden rounded-3xl glass p-6">
-            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand/30 blur-3xl" />
-            <div className="relative">
-              <h3 className="text-lg font-semibold">Currently booking</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Now accepting 2 new freelance projects for this quarter.</p>
-            </div>
           </div>
         </div>
       </div>
