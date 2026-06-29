@@ -5,6 +5,10 @@ import uiSilver from "@/assets/ui-silver.jpg.asset.json";
 import uiGold from "@/assets/ui-gold.jpg.asset.json";
 import uiNike from "@/assets/ui-nike.jpg.asset.json";
 import uiXroller from "@/assets/ui-xroller.jpg.asset.json";
+import uiCravetoBurgers from "@/assets/ui-craveto-burgers.png.asset.json";
+import uiCravetoSplash from "@/assets/ui-craveto-splash.png.asset.json";
+import uiCravetoDetail from "@/assets/ui-craveto-detail.png.asset.json";
+import uiCravetoDrinks from "@/assets/ui-craveto-drinks.png.asset.json";
 import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
 import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
 import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
@@ -639,15 +643,61 @@ const uiProjects = [
       "Feature badges with custom icons",
     ],
   },
+  {
+    t: "Craveto — Burgers Menu",
+    image: uiCravetoBurgers.url,
+    category: "Food Delivery App",
+    tools: "Figma",
+    details: [
+      "Category chip filter with active red pill",
+      "Soft neumorphic product cards",
+      "Favorites + profile in one tap",
+    ],
+  },
+  {
+    t: "Craveto — Splash Screen",
+    image: uiCravetoSplash.url,
+    category: "App Branding",
+    tools: "Figma · Photoshop",
+    details: [
+      "Crimson gradient brand splash",
+      "Custom script wordmark lockup",
+      "Eternal Company endorsement line",
+    ],
+  },
+  {
+    t: "Craveto — Product Detail",
+    image: uiCravetoDetail.url,
+    category: "Product Detail Screen",
+    tools: "Figma",
+    details: [
+      "Hero product with rating + price",
+      "Size + portion selectors inline",
+      "Persistent Order Now CTA",
+    ],
+  },
+  {
+    t: "Craveto — Drinks Menu",
+    image: uiCravetoDrinks.url,
+    category: "Food Delivery App",
+    tools: "Figma",
+    details: [
+      "Cutout product cards on light surface",
+      "Floating + action with bottom tab bar",
+      "Active Drinks filter in brand red",
+    ],
+  },
 ];
 
 function UIDesignPortfolio() {
+  const visible = uiProjects.length > 1 ? [...uiProjects, ...uiProjects] : uiProjects;
   return (
     <Section id="work" eyebrow="Product" title={<>UI / Web Page <span className="text-gradient">Design</span></>}
       subtitle="Interfaces built around real user goals — clean hierarchy, satisfying motion, frictionless flows.">
-      <div className="grid gap-5 md:grid-cols-2">
-        {uiProjects.map((p) => (
-          <article key={p.t} className="group relative overflow-hidden rounded-3xl glass glow-hover">
+      <div className="reveal overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="thumbnail-scroll-track flex w-max gap-5 animate-thumbnail-scroll">
+        {visible.map((p, i) => (
+          <article key={`${p.t}-${i}`} className="group relative w-[360px] sm:w-[440px] shrink-0 overflow-hidden rounded-3xl glass glow-hover">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
                 src={p.image}
@@ -682,6 +732,7 @@ function UIDesignPortfolio() {
             </div>
           </article>
         ))}
+        </div>
       </div>
     </Section>
   );
@@ -752,15 +803,17 @@ const posters: PosterItem[] = [
 ];
 
 function PackagingPosterPortfolio() {
+  const visible = posters.length > 1 ? [...posters, ...posters] : posters;
   return (
     <Section eyebrow="Print & Campaigns"
       title={<>Packaging & <span className="text-gradient">Poster Design</span></>}
       subtitle="Shelf-ready packaging and high-impact poster advertisements built to stop the scroll — and the foot traffic.">
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {posters.map((p) => (
+      <div className="reveal overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="thumbnail-scroll-track flex w-max gap-5 animate-thumbnail-scroll">
+        {visible.map((p, i) => (
           <article
-            key={p.t}
-            className={`reveal group relative overflow-hidden rounded-3xl glass glow-hover ${p.span ?? ""}`}
+            key={`${p.t}-${i}`}
+            className="group relative w-[280px] sm:w-[340px] shrink-0 overflow-hidden rounded-3xl glass glow-hover"
           >
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
@@ -796,6 +849,7 @@ function PackagingPosterPortfolio() {
             </div>
           </article>
         ))}
+        </div>
       </div>
     </Section>
   );
