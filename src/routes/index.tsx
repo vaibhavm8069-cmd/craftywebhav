@@ -14,10 +14,18 @@ import thumbnail7 from "@/assets/thumbnail-7.png.asset.json";
 import thumbnail8 from "@/assets/thumbnail-8.png.asset.json";
 import thumbnail9 from "@/assets/thumbnail-9.png.asset.json";
 import thumbnail10 from "@/assets/thumbnail-10.png.asset.json";
+import thumbnailWebDesign from "@/assets/thumbnail-web-design.png.asset.json";
+import posterPizza from "@/assets/poster-pizza.jpg.asset.json";
+import posterBurger from "@/assets/poster-burger.png.asset.json";
+import posterBurgerBillboard from "@/assets/poster-burger-billboard.png.asset.json";
+import posterPizzaBillboard from "@/assets/poster-pizza-billboard.jpg.asset.json";
+import posterAgera from "@/assets/poster-agera.png.asset.json";
+import packagingJuiceCan from "@/assets/packaging-juice-can.png.asset.json";
+import packagingJuiceLabel from "@/assets/packaging-juice-label.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
-  Send, CalendarClock, Quote, ChevronLeft, ChevronRight,
+  Send, CalendarClock,
   Youtube, Smartphone, Star, ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -50,11 +58,8 @@ function Index() {
       <Tools />
       <ThumbnailPortfolio />
       <UIDesignPortfolio />
-      <PackagingPortfolio />
-      <AdvertisementPortfolio />
-      <FreelanceJourney />
+      <PackagingPosterPortfolio />
       <Process />
-      <Testimonials />
       <Contact />
       <Footer />
     </div>
