@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Premium graphic design portfolio: thumbnails, UI design, packaging, ads and brand visuals that convert." },
       { name: "author", content: "Vaibhav Mohindra" },
       { property: "og:title", content: "Vaibhav Mohindra — Freelance Graphic Designer" },
-      { property: "og:description", content: "Scroll-stopping thumbnails, modern UI, and high-converting visual design." },
+      { property: "og:description", content: "Premium graphic design portfolio: thumbnails, UI design, packaging, ads and brand visuals that convert." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Vaibhav Mohindra — Freelance Graphic Designer" },
+      { name: "twitter:description", content: "Premium graphic design portfolio: thumbnails, UI design, packaging, ads and brand visuals that convert." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/AGFzIYUYx5VQUuLLoYepDcJyOyP2/social-images/social-1782753674753-ChatGPT_Image_Jun_27,_2026,_04_15_15_PM.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/AGFzIYUYx5VQUuLLoYepDcJyOyP2/social-images/social-1782753674753-ChatGPT_Image_Jun_27,_2026,_04_15_15_PM.webp" },
     ],
     links: [
       {
