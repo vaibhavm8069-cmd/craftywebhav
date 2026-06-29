@@ -801,59 +801,6 @@ function PackagingPosterPortfolio() {
   );
 }
 
-/* ─────────────────────── journey ─────────────────────── */
-
-const journey = [
-  { y: "2023", t: "Started Freelancing", d: "Took the leap into full-time freelance design." },
-  { y: "2023", t: "First Paid Client", d: "Delivered a brand identity package that became a long-term retainer." },
-  { y: "2024", t: "Expanded into UI Design", d: "Started shipping product UI for early-stage startups." },
-  { y: "2024", t: "Brand Identity Projects", d: "Crafted visual systems for 5+ DTC brands." },
-  { y: "2025", t: "Advertising Campaign Work", d: "Led performance creative for paid social campaigns." },
-];
-const journeyStats = [
-  { n: 15, s: "+", l: "Completed Projects" },
-  { n: 10, s: "+", l: "Returning Clients" },
-  { n: 100, s: "+", l: "Design Deliverables" },
-  { n: 95, s: "%", l: "Client Satisfaction" },
-];
-
-function FreelanceJourney() {
-  return (
-    <Section eyebrow="Journey" title={<>Freelance <span className="text-gradient">Journey</span></>}
-      subtitle="Two years of compounding craft, client wins, and creative range.">
-      <div className="reveal mb-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {journeyStats.map((s) => (
-          <div key={s.l} className="glass rounded-2xl p-5 glow-hover">
-            <div className="text-4xl font-semibold text-gradient">
-              <CountUp end={s.n} suffix={s.s} />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-          </div>
-        ))}
-      </div>
-      <div className="relative">
-        <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-brand/70 via-brand-2/40 to-transparent md:left-1/2" />
-        <ul className="space-y-8">
-          {journey.map((m, i) => (
-            <li key={m.t} className={`reveal relative md:grid md:grid-cols-2 md:gap-12 ${i % 2 ? "md:[&>div]:col-start-2" : ""}`}>
-              <div className="relative pl-12 md:pl-0">
-                <span className="absolute -left-0.5 top-1.5 grid h-9 w-9 place-items-center rounded-full bg-gradient-brand text-xs font-bold text-primary-foreground md:left-1/2 md:-translate-x-1/2">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className={`glass rounded-2xl p-5 ${i % 2 ? "md:ml-12" : "md:mr-12"}`}>
-                  <div className="text-xs uppercase tracking-wider text-brand">{m.y}</div>
-                  <div className="mt-1 text-lg font-semibold">{m.t}</div>
-                  <p className="mt-1 text-sm text-muted-foreground">{m.d}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Section>
-  );
-}
-
 /* ─────────────────────── process ─────────────────────── */
 
 const steps = [
@@ -878,61 +825,6 @@ function Process() {
             </div>
           </div>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ─────────────────────── testimonials ─────────────────────── */
-
-const testimonials = [
-  { n: "Arjun Kapoor", c: "Founder · Lumen AI", q: "Vaibhav's thumbnails doubled our CTR within two weeks. He just gets attention.", i: "AK" },
-  { n: "Priya Shah", c: "Marketing Lead · NorthBean", q: "Our packaging redesign felt premium and shelf-ready. Sales jumped 38% the next quarter.", i: "PS" },
-  { n: "Daniel Rivera", c: "CEO · PulseFit", q: "Easily the most thoughtful product designer I've worked with as a freelancer. Highly recommend.", i: "DR" },
-  { n: "Neha Verma", c: "Creator · CreatorClub", q: "Reliable, creative, and fast. Vaibhav has become our go-to design partner.", i: "NV" },
-];
-
-function Testimonials() {
-  const [i, setI] = useState(0);
-  const t = testimonials[i];
-  return (
-    <Section eyebrow="Testimonials" title={<>Client <span className="text-gradient">Feedback</span></>}
-      subtitle="What founders, creators and marketers say after we ship.">
-      <div className="reveal relative mx-auto max-w-3xl">
-        <div className="glass-strong rounded-3xl p-8 sm:p-12 glow">
-          <Quote className="h-10 w-10 text-brand" />
-          <p className="mt-6 text-xl leading-relaxed sm:text-2xl">{t.q}</p>
-          <div className="mt-8 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-brand font-bold text-primary-foreground">{t.i}</div>
-              <div>
-                <div className="font-semibold">{t.n}</div>
-                <div className="text-sm text-muted-foreground">{t.c}</div>
-              </div>
-            </div>
-            <div className="flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-4 w-4 fill-brand text-brand" />)}
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 flex items-center justify-between">
-          <div className="flex gap-1.5">
-            {testimonials.map((_, k) => (
-              <button key={k} onClick={() => setI(k)} aria-label={`Testimonial ${k + 1}`}
-                className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-gradient-brand" : "w-1.5 bg-white/15"}`} />
-            ))}
-          </div>
-          <div className="flex gap-2">
-            <button onClick={() => setI((i - 1 + testimonials.length) % testimonials.length)}
-              className="grid h-10 w-10 place-items-center rounded-full glass transition hover:bg-white/10" aria-label="Previous">
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button onClick={() => setI((i + 1) % testimonials.length)}
-              className="grid h-10 w-10 place-items-center rounded-full glass transition hover:bg-white/10" aria-label="Next">
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
       </div>
     </Section>
   );
