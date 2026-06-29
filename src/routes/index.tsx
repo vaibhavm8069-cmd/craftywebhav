@@ -883,13 +883,6 @@ function Contact() {
               ))}
             </ul>
           </div>
-          <div className="relative overflow-hidden rounded-3xl glass p-6">
-            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand/30 blur-3xl" />
-            <div className="relative">
-              <h3 className="text-lg font-semibold">Currently booking</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Now accepting 2 new freelance projects for this quarter.</p>
-            </div>
-          </div>
         </div>
       </div>
     </Section>
