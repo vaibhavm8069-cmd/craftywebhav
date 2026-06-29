@@ -26,7 +26,7 @@ import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
   Send, CalendarClock,
-  Youtube, Smartphone, Star, ArrowUpRight,
+  Youtube, Smartphone, ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -504,6 +504,14 @@ const thumbs: ThumbnailItem[] = [
     accent: "from-rose-400 via-red-400 to-fuchsia-400",
     metrics: "Drama-horror poster treatment",
     features: ["Shock-expression subject", "Villain reveal layering", "Moody filmic grading", "Regional title styling"],
+  },
+  {
+    title: "Close Clients In Just 7 Days!",
+    niche: "Marketing",
+    image: thumbnailWebDesign.url,
+    accent: "from-emerald-400 via-green-400 to-lime-300",
+    metrics: "Web design lead-gen thumbnail",
+    features: ["Money-green focal accent", "Client payments mockup overlay", "Upward growth chart cue", "Bold italic CTR headline"],
   },
 ];
 
