@@ -687,91 +687,114 @@ function UIDesignPortfolio() {
   );
 }
 
-/* ─────────────────────── packaging ─────────────────────── */
+/* ─────────────────────── packaging & posters ─────────────────────── */
 
-const packaging = [
-  { t: "Cold Brew Coffee", g: "from-amber-700 via-orange-700 to-red-800", icon: "☕" },
-  { t: "Volt Energy Drink", g: "from-yellow-400 via-amber-500 to-orange-600", icon: "⚡" },
-  { t: "Organic Harvest", g: "from-emerald-600 via-green-700 to-lime-700", icon: "🌱" },
-  { t: "Aura Cosmetic Box", g: "from-pink-500 via-rose-500 to-fuchsia-600", icon: "✨" },
-  { t: "Crunch Snacks", g: "from-orange-500 via-red-500 to-pink-600", icon: "🥨" },
-  { t: "Premium Tea Co.", g: "from-teal-600 via-emerald-700 to-cyan-700", icon: "🍵" },
+type PosterItem = {
+  t: string;
+  category: string;
+  image: string;
+  tools: string;
+  details: string[];
+  span?: string;
+};
+
+const posters: PosterItem[] = [
+  {
+    t: "Juicey Organo — Can Mockup",
+    category: "Packaging Design",
+    image: packagingJuiceCan.url,
+    tools: "Photoshop · Illustrator",
+    details: ["Beverage can label wrap", "Premium gloss + droplet finish", "No-preservatives trust badge", "Splash-driven hero composition"],
+  },
+  {
+    t: "Juicey Organo — Label Artwork",
+    category: "Packaging Design",
+    image: packagingJuiceLabel.url,
+    tools: "Illustrator · Photoshop",
+    details: ["Flat label print-ready layout", "Custom citrus display type", "250ml volume hierarchy", "Organic certification badge"],
+  },
+  {
+    t: "Super Sizzling Pizza — Social Poster",
+    category: "Poster Advertisement",
+    image: posterPizza.url,
+    tools: "Photoshop",
+    details: ["Distressed editorial type stack", "Topping splash composition", "50% OFF chalk-style mark", "Order Now + free delivery CTA"],
+  },
+  {
+    t: "Delicious Burger — Campaign Poster",
+    category: "Poster Advertisement",
+    image: posterBurger.url,
+    tools: "Photoshop",
+    details: ["Bold grunge headline", "Yellow price-tag focal point", "Floating ingredient parallax", "Combo + drink storytelling"],
+  },
+  {
+    t: "Pizza Billboard — Metro Mockup",
+    category: "Outdoor Ad Mockup",
+    image: posterPizzaBillboard.url,
+    tools: "Photoshop",
+    details: ["DOOH metro-station placement", "High-impact vertical hero", "Brand recall headline lockup", "Real-world context render"],
+  },
+  {
+    t: "Burger Billboard — Street Mockup",
+    category: "Outdoor Ad Mockup",
+    image: posterBurgerBillboard.url,
+    tools: "Photoshop",
+    details: ["Night-scene storefront mockup", "Glow lit-frame product hero", "Order Now CTA placement", "Premium QSR campaign feel"],
+  },
+  {
+    t: "Koeinsegg Agera — Auto Print",
+    category: "Poster Advertisement",
+    image: posterAgera.url,
+    tools: "Illustrator · Photoshop",
+    details: ["Editorial automotive layout", "Performance spec data grid", "Custom torn-edge masthead", "Iconography-driven feature row"],
+    span: "md:col-span-2",
+  },
 ];
 
-function PackagingPortfolio() {
+function PackagingPosterPortfolio() {
   return (
-    <Section eyebrow="Print" title={<>Packaging <span className="text-gradient">Design</span></>}
-      subtitle="Shelf-stopping packaging concepts built around brand strategy and tactile detail.">
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {packaging.map((p) => (
-          <div key={p.t} className="group relative h-72 overflow-hidden rounded-3xl glass glow-hover">
-            <div className={`absolute inset-0 bg-gradient-to-br ${p.g}`} />
-            {/* box mockup */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative h-44 w-32 -rotate-6 rounded-md bg-gradient-to-b from-white/30 to-black/30 shadow-2xl backdrop-blur-sm transition group-hover:rotate-0 group-hover:scale-110">
-                <div className="absolute inset-x-3 top-4 text-center text-3xl">{p.icon}</div>
-                <div className="absolute inset-x-3 top-16 h-px bg-white/40" />
-                <div className="absolute inset-x-3 top-20 text-center text-[10px] font-bold uppercase tracking-wider text-white/90">{p.t}</div>
-                <div className="absolute inset-x-4 bottom-4 h-1 rounded bg-white/40" />
-              </div>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <h3 className="text-lg font-semibold text-white">{p.t}</h3>
-            </div>
-            <div className="absolute inset-0 flex items-end bg-black/80 p-5 opacity-0 transition group-hover:opacity-100">
-              <ul className="space-y-1 text-xs text-white/90">
-                <li>✦ Packaging Concept</li>
-                <li>✦ Brand Strategy</li>
-                <li>✦ Print Specifications</li>
-                <li>✦ Visual Identity</li>
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ─────────────────────── ads ─────────────────────── */
-
-const ads = [
-  { t: "Social Media Ads", g: "from-fuchsia-600 to-pink-600" },
-  { t: "Product Launch Campaign", g: "from-indigo-600 to-blue-700" },
-  { t: "Promotional Posters", g: "from-orange-500 to-red-700" },
-  { t: "Sale Banners", g: "from-emerald-500 to-teal-700" },
-  { t: "Event Advertisements", g: "from-violet-600 to-purple-800" },
-  { t: "Brand Awareness Campaigns", g: "from-cyan-500 to-blue-700" },
-];
-
-function AdvertisementPortfolio() {
-  return (
-    <Section eyebrow="Performance" title={<>Advertisement <span className="text-gradient">Creatives</span></>}
-      subtitle="Conversion-first ad creatives engineered to stop the scroll and drive action.">
+    <Section eyebrow="Print & Campaigns"
+      title={<>Packaging & <span className="text-gradient">Poster Design</span></>}
+      subtitle="Shelf-ready packaging and high-impact poster advertisements built to stop the scroll — and the foot traffic.">
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {ads.map((a) => (
-          <div key={a.t} className="group relative aspect-[4/5] overflow-hidden rounded-3xl glass glow-hover">
-            <div className={`absolute inset-0 bg-gradient-to-br ${a.g}`} />
-            <div className="absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:18px_18px] opacity-40" />
-            <div className="absolute left-5 right-5 top-5 space-y-2">
-              <div className="inline-block rounded-full bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur">Limited Time</div>
-              <div className="text-4xl font-black leading-none text-white drop-shadow-lg">SHOP NOW</div>
-              <div className="text-sm text-white/90">Up to 60% Off</div>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-5">
-              <div className="rounded-2xl bg-white/15 p-3 backdrop-blur">
-                <div className="text-sm font-semibold text-white">{a.t}</div>
+        {posters.map((p) => (
+          <article
+            key={p.t}
+            className={`reveal group relative overflow-hidden rounded-3xl glass glow-hover ${p.span ?? ""}`}
+          >
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <img
+                src={p.image}
+                alt={`${p.t} — ${p.category}`}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+              <div className="absolute left-4 top-4">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur">
+                  {p.category}
+                </span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5 transition duration-500 group-hover:opacity-0">
+                <h3 className="text-lg font-semibold text-white drop-shadow sm:text-xl">{p.t}</h3>
+                <p className="mt-1 text-xs text-white/70">{p.tools}</p>
+              </div>
+              <div className="absolute inset-0 flex items-end bg-black/75 p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                <div className="space-y-3 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-white/65">Design highlights</div>
+                  <ul className="space-y-2 text-sm text-white/90">
+                    {p.details.map((d) => (
+                      <li key={d} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-xs text-white/60">{p.tools}</div>
+                </div>
               </div>
             </div>
-            <div className="absolute inset-0 flex items-end bg-black/80 p-5 opacity-0 transition group-hover:opacity-100">
-              <ul className="space-y-1 text-xs text-white/90">
-                <li>✦ Campaign Goal: Conversions</li>
-                <li>✦ Target Audience: Defined personas</li>
-                <li>✦ Conversion Focus: CTR & ROAS</li>
-                <li>✦ Creative Strategy: Hook + offer + CTA</li>
-              </ul>
-            </div>
-          </div>
+          </article>
         ))}
       </div>
     </Section>
