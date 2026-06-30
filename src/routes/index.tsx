@@ -27,7 +27,7 @@ import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
   Send, CalendarClock,
-  Youtube, Smartphone, ArrowUpRight,
+  Youtube, Smartphone, ArrowUpRight, X as XIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -63,6 +63,7 @@ function Index() {
       <Process />
       <Contact />
       <Footer />
+      <Lightbox />
     </div>
   );
 }
