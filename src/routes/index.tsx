@@ -5,10 +5,7 @@ import uiSilver from "@/assets/ui-silver.jpg.asset.json";
 import uiGold from "@/assets/ui-gold.jpg.asset.json";
 import uiNike from "@/assets/ui-nike.jpg.asset.json";
 import uiXroller from "@/assets/ui-xroller.jpg.asset.json";
-import uiCravetoBurgers from "@/assets/ui-craveto-burgers.png.asset.json";
-import uiCravetoSplash from "@/assets/ui-craveto-splash.png.asset.json";
-import uiCravetoDetail from "@/assets/ui-craveto-detail.png.asset.json";
-import uiCravetoDrinks from "@/assets/ui-craveto-drinks.png.asset.json";
+import uiCravetoShowcase from "@/assets/ui-craveto-showcase.png.asset.json";
 import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
 import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
 import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
@@ -30,7 +27,7 @@ import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
   Send, CalendarClock,
-  Youtube, Smartphone, ArrowUpRight,
+  Youtube, Smartphone, ArrowUpRight, X as XIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,6 +63,7 @@ function Index() {
       <Process />
       <Contact />
       <Footer />
+      <Lightbox />
     </div>
   );
 }
@@ -151,6 +149,55 @@ function ParticlesBackground() {
           />
         );
       })}
+    </div>
+  );
+}
+
+/* ─────────────────────── lightbox ─────────────────────── */
+
+let lightboxOpener: ((src: string, alt: string) => void) | null = null;
+function openLightbox(src: string, alt: string) {
+  lightboxOpener?.(src, alt);
+}
+
+function Lightbox() {
+  const [state, setState] = useState<{ src: string; alt: string } | null>(null);
+  useEffect(() => {
+    lightboxOpener = (src, alt) => setState({ src, alt });
+    return () => { lightboxOpener = null; };
+  }, []);
+  useEffect(() => {
+    if (!state) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setState(null); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [state]);
+  if (!state) return null;
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={() => setState(null)}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md animate-in fade-in duration-200"
+    >
+      <button
+        aria-label="Close"
+        onClick={() => setState(null)}
+        className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full glass-strong text-white transition hover:scale-110 hover:bg-white/10"
+      >
+        <XIcon className="h-5 w-5" />
+      </button>
+      <img
+        src={state.src}
+        alt={state.alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[92vh] max-w-[92vw] rounded-2xl object-contain shadow-[0_30px_120px_-20px_rgba(0,0,0,0.8)]"
+      />
     </div>
   );
 }
@@ -552,7 +599,8 @@ function ThumbnailPortfolio() {
           {visible.map((t, index) => (
             <article
               key={`${t.title}-${index}`}
-              className="thumbnail-card group relative h-[250px] w-[360px] shrink-0 overflow-hidden rounded-[1.6rem] glass glow-hover sm:h-[280px] sm:w-[440px]"
+              onClick={() => openLightbox(t.image, t.title)}
+              className="thumbnail-card group relative h-[250px] w-[360px] shrink-0 cursor-zoom-in overflow-hidden rounded-[1.6rem] glass glow-hover sm:h-[280px] sm:w-[440px]"
             >
               <img
                 src={t.image}
@@ -644,47 +692,15 @@ const uiProjects = [
     ],
   },
   {
-    t: "Craveto — Burgers Menu",
-    image: uiCravetoBurgers.url,
-    category: "Food Delivery App",
-    tools: "Figma",
-    details: [
-      "Category chip filter with active red pill",
-      "Soft neumorphic product cards",
-      "Favorites + profile in one tap",
-    ],
-  },
-  {
-    t: "Craveto — Splash Screen",
-    image: uiCravetoSplash.url,
-    category: "App Branding",
+    t: "Craveto — Food Delivery App Showcase",
+    image: uiCravetoShowcase.url,
+    category: "App UI Case Study",
     tools: "Figma · Photoshop",
     details: [
-      "Crimson gradient brand splash",
-      "Custom script wordmark lockup",
-      "Eternal Company endorsement line",
-    ],
-  },
-  {
-    t: "Craveto — Product Detail",
-    image: uiCravetoDetail.url,
-    category: "Product Detail Screen",
-    tools: "Figma",
-    details: [
-      "Hero product with rating + price",
-      "Size + portion selectors inline",
-      "Persistent Order Now CTA",
-    ],
-  },
-  {
-    t: "Craveto — Drinks Menu",
-    image: uiCravetoDrinks.url,
-    category: "Food Delivery App",
-    tools: "Figma",
-    details: [
-      "Cutout product cards on light surface",
-      "Floating + action with bottom tab bar",
-      "Active Drinks filter in brand red",
+      "Full app showcase: splash, menu, detail, payments, tracking",
+      "Crimson brand system with bold script wordmark",
+      "Category chips, neumorphic cards & persistent CTAs",
+      "Live order tracking with status timeline",
     ],
   },
 ];
@@ -697,7 +713,11 @@ function UIDesignPortfolio() {
       <div className="reveal overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="thumbnail-scroll-track flex w-max gap-5 animate-thumbnail-scroll">
         {visible.map((p, i) => (
-          <article key={`${p.t}-${i}`} className="group relative w-[360px] sm:w-[440px] shrink-0 overflow-hidden rounded-3xl glass glow-hover">
+          <article
+            key={`${p.t}-${i}`}
+            onClick={() => openLightbox(p.image, p.t)}
+            className="group relative w-[360px] sm:w-[440px] shrink-0 cursor-zoom-in overflow-hidden rounded-3xl glass glow-hover"
+          >
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
                 src={p.image}
@@ -813,7 +833,8 @@ function PackagingPosterPortfolio() {
         {visible.map((p, i) => (
           <article
             key={`${p.t}-${i}`}
-            className="group relative w-[280px] sm:w-[340px] shrink-0 overflow-hidden rounded-3xl glass glow-hover"
+            onClick={() => openLightbox(p.image, p.t)}
+            className="group relative w-[280px] sm:w-[340px] shrink-0 cursor-zoom-in overflow-hidden rounded-3xl glass glow-hover"
           >
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
