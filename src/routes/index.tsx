@@ -153,6 +153,55 @@ function ParticlesBackground() {
   );
 }
 
+/* ─────────────────────── lightbox ─────────────────────── */
+
+let lightboxOpener: ((src: string, alt: string) => void) | null = null;
+function openLightbox(src: string, alt: string) {
+  lightboxOpener?.(src, alt);
+}
+
+function Lightbox() {
+  const [state, setState] = useState<{ src: string; alt: string } | null>(null);
+  useEffect(() => {
+    lightboxOpener = (src, alt) => setState({ src, alt });
+    return () => { lightboxOpener = null; };
+  }, []);
+  useEffect(() => {
+    if (!state) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setState(null); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [state]);
+  if (!state) return null;
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={() => setState(null)}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md animate-in fade-in duration-200"
+    >
+      <button
+        aria-label="Close"
+        onClick={() => setState(null)}
+        className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full glass-strong text-white transition hover:scale-110 hover:bg-white/10"
+      >
+        <XIcon className="h-5 w-5" />
+      </button>
+      <img
+        src={state.src}
+        alt={state.alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[92vh] max-w-[92vw] rounded-2xl object-contain shadow-[0_30px_120px_-20px_rgba(0,0,0,0.8)]"
+      />
+    </div>
+  );
+}
+
 function Section({
   id, eyebrow, title, subtitle, children, className = "",
 }: {
