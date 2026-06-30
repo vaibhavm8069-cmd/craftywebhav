@@ -599,7 +599,8 @@ function ThumbnailPortfolio() {
           {visible.map((t, index) => (
             <article
               key={`${t.title}-${index}`}
-              className="thumbnail-card group relative h-[250px] w-[360px] shrink-0 overflow-hidden rounded-[1.6rem] glass glow-hover sm:h-[280px] sm:w-[440px]"
+              onClick={() => openLightbox(t.image, t.title)}
+              className="thumbnail-card group relative h-[250px] w-[360px] shrink-0 cursor-zoom-in overflow-hidden rounded-[1.6rem] glass glow-hover sm:h-[280px] sm:w-[440px]"
             >
               <img
                 src={t.image}
