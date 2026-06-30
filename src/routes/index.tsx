@@ -712,7 +712,11 @@ function UIDesignPortfolio() {
       <div className="reveal overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="thumbnail-scroll-track flex w-max gap-5 animate-thumbnail-scroll">
         {visible.map((p, i) => (
-          <article key={`${p.t}-${i}`} className="group relative w-[360px] sm:w-[440px] shrink-0 overflow-hidden rounded-3xl glass glow-hover">
+          <article
+            key={`${p.t}-${i}`}
+            onClick={() => openLightbox(p.image, p.t)}
+            className="group relative w-[360px] sm:w-[440px] shrink-0 cursor-zoom-in overflow-hidden rounded-3xl glass glow-hover"
+          >
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
                 src={p.image}
@@ -828,7 +832,8 @@ function PackagingPosterPortfolio() {
         {visible.map((p, i) => (
           <article
             key={`${p.t}-${i}`}
-            className="group relative w-[280px] sm:w-[340px] shrink-0 overflow-hidden rounded-3xl glass glow-hover"
+            onClick={() => openLightbox(p.image, p.t)}
+            className="group relative w-[280px] sm:w-[340px] shrink-0 cursor-zoom-in overflow-hidden rounded-3xl glass glow-hover"
           >
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
