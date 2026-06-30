@@ -921,14 +921,6 @@ function Contact() {
   );
 }
 
-function Field({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
-  return (
-    <label className={`block ${className}`}>
-      <span className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">{label}</span>
-      {children}
-    </label>
-  );
-}
 
 /* ─────────────────────── footer ─────────────────────── */
 
