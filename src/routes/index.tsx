@@ -26,12 +26,8 @@ import packagingJuiceLabel from "@/assets/packaging-juice-label.png.asset.json";
 import {
   ArrowRight, Linkedin, Instagram, Mail,
   Sparkles, Palette, Layers, Camera, Wand2,
-  Send, CalendarClock,
   Youtube, Smartphone, ArrowUpRight, X as XIcon,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -912,66 +908,19 @@ function Contact() {
     <Section id="contact" eyebrow="Contact"
       title={<>Let's Create <span className="text-gradient">Something Great</span></>}
       subtitle="Have a project in mind? Let's discuss how strategic design can help your brand stand out.">
-      <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-        <form
-          onSubmit={(e) => { e.preventDefault(); }}
-          className="reveal glass-strong rounded-3xl p-6 sm:p-8 glow"
+      <div className="reveal flex flex-col items-center justify-center py-12">
+        <a
+          href="mailto:vaibhavmohindra22155@gmail.com"
+          className="group inline-flex items-center gap-3 rounded-full glass-strong px-8 py-4 text-lg font-medium transition hover:scale-105 hover:bg-white/10 glow"
         >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Name"><Input placeholder="Your full name" className="h-12 rounded-xl border-white/10 bg-white/5" /></Field>
-            <Field label="Email"><Input type="email" placeholder="you@brand.com" className="h-12 rounded-xl border-white/10 bg-white/5" /></Field>
-          </div>
-          <Field label="Project Type" className="mt-4">
-            <Input placeholder="Thumbnails / UI / Packaging / Ads" className="h-12 rounded-xl border-white/10 bg-white/5" />
-          </Field>
-          <Field label="Message" className="mt-4">
-            <Textarea rows={5} placeholder="Tell me about your project, timeline and goals…" className="rounded-xl border-white/10 bg-white/5" />
-          </Field>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button type="submit" className="h-12 rounded-full bg-gradient-brand px-6 text-primary-foreground glow glow-hover hover:opacity-90">
-              <Send className="mr-2 h-4 w-4" /> Send Inquiry
-            </Button>
-            <Button type="button" variant="outline" className="h-12 rounded-full border-white/15 bg-white/5 px-6 hover:bg-white/10">
-              <CalendarClock className="mr-2 h-4 w-4" /> Schedule Discussion
-            </Button>
-          </div>
-        </form>
-
-        <div className="reveal space-y-4">
-          <div className="glass rounded-3xl p-6">
-            <h3 className="text-lg font-semibold">Direct line</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Prefer to skip the form? Reach out directly — typical reply within 24 hours.</p>
-            <a href="mailto:vaibhavmohindra22155@gmail.com" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand">
-              <Mail className="h-4 w-4" /> vaibhavmohindra22155@gmail.com
-            </a>
-          </div>
-          <div className="glass rounded-3xl p-6">
-            <h3 className="text-lg font-semibold">Find me online</h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {socials.map(({ Icon, label, href }) => (
-                <li key={label}>
-                  <a href={href} aria-label={label}
-                    className="group inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-xs text-muted-foreground transition hover:text-foreground">
-                    <Icon className="h-4 w-4" /> {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+          <Mail className="h-5 w-5 text-brand" />
+          vaibhavmohindra22155@gmail.com
+        </a>
       </div>
     </Section>
   );
 }
 
-function Field({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
-  return (
-    <label className={`block ${className}`}>
-      <span className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">{label}</span>
-      {children}
-    </label>
-  );
-}
 
 /* ─────────────────────── footer ─────────────────────── */
 
