@@ -5,10 +5,7 @@ import uiSilver from "@/assets/ui-silver.jpg.asset.json";
 import uiGold from "@/assets/ui-gold.jpg.asset.json";
 import uiNike from "@/assets/ui-nike.jpg.asset.json";
 import uiXroller from "@/assets/ui-xroller.jpg.asset.json";
-import uiCravetoBurgers from "@/assets/ui-craveto-burgers.png.asset.json";
-import uiCravetoSplash from "@/assets/ui-craveto-splash.png.asset.json";
-import uiCravetoDetail from "@/assets/ui-craveto-detail.png.asset.json";
-import uiCravetoDrinks from "@/assets/ui-craveto-drinks.png.asset.json";
+import uiCravetoShowcase from "@/assets/ui-craveto-showcase.png.asset.json";
 import thumbnail1 from "@/assets/thumbnail-1.png.asset.json";
 import thumbnail3 from "@/assets/thumbnail-3.png.asset.json";
 import thumbnail4 from "@/assets/thumbnail-4.png.asset.json";
@@ -644,47 +641,15 @@ const uiProjects = [
     ],
   },
   {
-    t: "Craveto — Burgers Menu",
-    image: uiCravetoBurgers.url,
-    category: "Food Delivery App",
-    tools: "Figma",
-    details: [
-      "Category chip filter with active red pill",
-      "Soft neumorphic product cards",
-      "Favorites + profile in one tap",
-    ],
-  },
-  {
-    t: "Craveto — Splash Screen",
-    image: uiCravetoSplash.url,
-    category: "App Branding",
+    t: "Craveto — Food Delivery App Showcase",
+    image: uiCravetoShowcase.url,
+    category: "App UI Case Study",
     tools: "Figma · Photoshop",
     details: [
-      "Crimson gradient brand splash",
-      "Custom script wordmark lockup",
-      "Eternal Company endorsement line",
-    ],
-  },
-  {
-    t: "Craveto — Product Detail",
-    image: uiCravetoDetail.url,
-    category: "Product Detail Screen",
-    tools: "Figma",
-    details: [
-      "Hero product with rating + price",
-      "Size + portion selectors inline",
-      "Persistent Order Now CTA",
-    ],
-  },
-  {
-    t: "Craveto — Drinks Menu",
-    image: uiCravetoDrinks.url,
-    category: "Food Delivery App",
-    tools: "Figma",
-    details: [
-      "Cutout product cards on light surface",
-      "Floating + action with bottom tab bar",
-      "Active Drinks filter in brand red",
+      "Full app showcase: splash, menu, detail, payments, tracking",
+      "Crimson brand system with bold script wordmark",
+      "Category chips, neumorphic cards & persistent CTAs",
+      "Live order tracking with status timeline",
     ],
   },
 ];
